@@ -6,11 +6,11 @@ require_once '../models/Book.php';
 $db = new Database();
 $bookModel = new Book($db);
 
-// Get the search query
+
 $query = isset($_GET['query']) ? trim($_GET['query']) : '';
 $query = htmlspecialchars($query, ENT_QUOTES, 'UTF-8');
 
-// Fetch books based on the query
+
 if ($query === '') {
   $books = $bookModel->getAllBooks();
 } else {

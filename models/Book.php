@@ -47,10 +47,6 @@ class Book
 
   public function borrowBook($studentId, $bookId, $returnDate)
   {
-    // Update book availability to not available
-    // $this->updateBookAvailability($bookId, 0);
-
-    // Insert borrowing record
     $sql = "INSERT INTO borrowings (student_id, book_id, borrow_date, return_date, is_borrowing) 
               VALUES ('$studentId', '$bookId', NOW(), '$returnDate', 1)";
     $this->connection->query($sql);
