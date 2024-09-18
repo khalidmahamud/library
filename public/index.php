@@ -7,6 +7,7 @@ require_once '../models/User.php';
 require_once '../models/Book.php';
 require_once '../controllers/LoginController.php';
 require_once '../controllers/BookController.php';
+require_once '../controllers/BorrowController.php';
 
 // Database connection
 $db = new Database();
@@ -17,6 +18,7 @@ $bookModel = new Book($db);
 $action = $_GET['action'] ?? 'login';
 $loginController = new LoginController($userModel);
 $bookController = new BookController($bookModel);
+$borrowController = new BorrowController($bookModel);
 
 // Checks if the user is logged in
 if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) {
@@ -54,12 +56,42 @@ switch ($action) {
       echo 'No book ID provided.';
     }
     break;
+  case 'borrow_book':
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $studentId = $_POST['student_id'];
+        $bookId = $_POST['book_id'];
+        $returnDate = $_POST['return_date'];
+
+        // Call the borrowBook method
+        $result = $borrowController->borrowBook($studentId, $bookId, $returnDate);
+
+        if ($result === true) {
+            // Successful borrowing, redirect to books list
+            header('Location: index.php?action=books');
+            exit();
+        } else {
+            // Failed, $result contains the error message
+            $errorMessage = $result;
+        }
+
+        // Load the form again with error message
+        $book = $bookModel->getBookById($bookId);
+        include '../views/borrow_book_form.php';
+    } else {
+        $bookId = isset($_GET['id']) ? (int) $_GET['id'] : null;
+        if ($bookId) {
+            $borrowController->showBorrowBookForm($bookId);
+        } else {
+            echo 'No valid book ID provided.';
+        }
+    }
+    break;
+
   case 'logout':
     session_destroy();
     header('Location: index.php?action=login');
     exit();
   case 'forgot_password':
-    // Renders the forgot password view
     require '../views/forgot_password.php';
     break;
   case 'verify_security_question':
@@ -67,7 +99,6 @@ switch ($action) {
       $username = $_POST['username'];
       $securityAnswer = $_POST['security_answer'];
       if ($userModel->verifySecurityQuestion($username, $securityAnswer)) {
-        // Stores user ID in session or other data needed for password reset
         $_SESSION['user_id'] = $userModel->getUserIdByUsername($username);
         header('Location: index.php?action=reset_password');
         exit();
@@ -104,7 +135,6 @@ switch ($action) {
       }
     }
     break;
-
   default:
     echo 'Page not found';
 }

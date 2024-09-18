@@ -31,7 +31,11 @@ if (!empty($books)): ?>
           <div class="p-6">
             <h2 class="text-xl font-semibold"><?php echo htmlspecialchars($book['title']); ?></h2>
             <p class="text-gray-600 text-lg"><?php echo htmlspecialchars($book['author']); ?></p>
-            <p class="text-green-400"><?php echo $book['is_available'] ? 'Available' : 'Not Available'; ?></p>
+            <p class="text-lg">
+              <span class="<?php echo $book['is_available'] ? 'text-green-500' : 'text-red-500'; ?>">
+                <?php echo $book['is_available'] ? 'Available' : 'Not Available'; ?>
+              </span>
+            </p>
           </div>
         </a>
       </div>

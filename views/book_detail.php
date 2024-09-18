@@ -14,9 +14,6 @@
       <a href="index.php?action=books" class="text-3xl font-semibold">AIUB</a>
       <ul class="flex items-center space-x-6">
         <li>
-          <a href="#" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Borrow Book</a>
-        </li>
-        <li>
           <a href="index.php?action=logout" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log Out</a>
         </li>
       </ul>
@@ -40,10 +37,14 @@
                 <strong class="text-gray-500">Description:</strong><br />
                 <?php echo htmlspecialchars($book['description']); ?>
               </article>
-              <p class="text-green-500 text-lg">
-                <strong class="text-gray-500">Availability: </strong><?php echo $book['is_available'] ? 'Available' : 'Not Available'; ?>
+              <p class="text-lg">
+                <strong class="text-gray-500">Availability: </strong>
+                <span class="<?php echo $book['is_available'] ? 'text-green-500' : 'text-red-500'; ?>">
+                  <?php echo $book['is_available'] ? 'Available' : 'Not Available'; ?>
+                </span>
               </p>
-              <a href="#" class="inline-block mt-6 px-6 py-3 text-center text-lg font-semibold bg-teal-500 text-white hover:bg-teal-700 rounded-xl">Borrow Book</a>
+              <!-- Borrow Book Link -->
+              <a href="index.php?action=borrow_book&id=<?php echo htmlspecialchars($book['id']); ?>" class="inline-block mt-6 px-6 py-3 text-center text-lg font-semibold bg-teal-500 text-white hover:bg-teal-700 rounded-xl">Borrow Book</a>
             </div>
           </div>
         </div>
