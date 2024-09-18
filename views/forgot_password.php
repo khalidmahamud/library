@@ -11,6 +11,7 @@
 <body>
   <main class="max-w-7xl mx-auto py-12 px-6">
     <div class="p-12 w-1/3 mx-auto bg-gray-100 rounded-xl">
+
       <h1 class="mb-6 text-3xl text-center">Forgot Password</h1>
 
       <?php if (isset($_SESSION['error'])): ?>
@@ -20,7 +21,7 @@
         </div>
       <?php endif; ?>
 
-      <form action="index.php?action=verify_security_question" method="POST" class="space-y-5">
+      <form action="index.php?action=verify_security_question" method="POST" class="space-y-5 mb-6">
         <div class="space-y-2">
           <label for="username">Your Username</label>
           <input type="text" id="username" name="username" class="w-full py-4 px-6 rounded-md">
@@ -31,6 +32,8 @@
         </div>
         <input type="submit" value="Verify" class="mt-6 py-4 w-full text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white"></input>
       </form>
+      <a href="index.php?action=login" class="inline-block w-full py-4 px-6 text-center text-lg bg-gray-500 hover:bg-gray-700 rounded-lg text-white">Back</a>
+
     </div>
   </main>
 </body>

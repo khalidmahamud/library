@@ -32,7 +32,7 @@
             </div>
           <?php endif; ?>
 
-          <form action="index.php?action=borrow_book&id=<?php echo htmlspecialchars($book['id']); ?>" method="post">
+          <form action="index.php?action=borrow_book&id=<?php echo htmlspecialchars($book['id']); ?>" method="post" class="mb-6">
             <input type="hidden" name="book_id" value="<?php echo htmlspecialchars($book['id']); ?>">
             <div class="mb-6">
               <label for="book_title" class="block text-lg font-semibold">Book Title</label>
@@ -47,7 +47,9 @@
               <input type="date" id="return_date" name="return_date" class="mt-1 w-full py-4 px-6 rounded-md" required>
             </div>
             <button type="submit" class="px-6 py-3 w-full text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Borrow</button>
+
           </form>
+          <a href="index.php?action=book_detail&id=<?php echo htmlspecialchars($book['id']); ?>" class="w-full inline-block px-6 py-3 text-center text-lg font-semibold bg-gray-500 text-white hover:bg-gray-700 rounded-xl">Back</a>
         </div>
       </div>
     </div>

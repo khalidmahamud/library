@@ -20,7 +20,7 @@
         </div>
       <?php endif; ?>
 
-      <form action="index.php?action=update_password" method="POST" class="space-y-5">
+      <form action="index.php?action=update_password" method="POST" class="space-y-5 mb-6">
         <div class="space-y-2">
           <label for="password">New Password</label>
           <input type="password" id="password" name="password" class="w-full py-4 px-6 rounded-md">
@@ -31,6 +31,8 @@
         </div>
         <input type="submit" value="Update Password" class="mt-6 py-4 w-full text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white"></input>
       </form>
+      <a href="index.php?action=forgot_password" class="inline-block w-full py-4 px-6 text-center text-lg bg-gray-500 hover:bg-gray-700 rounded-lg text-white">Back</a>
+
     </div>
   </main>
 </body>

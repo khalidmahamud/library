@@ -45,6 +45,8 @@
               </p>
               <!-- Borrow Book Link -->
               <a href="index.php?action=borrow_book&id=<?php echo htmlspecialchars($book['id']); ?>" class="inline-block mt-6 px-6 py-3 text-center text-lg font-semibold bg-teal-500 text-white hover:bg-teal-700 rounded-xl">Borrow Book</a>
+              <a href="index.php?action=books" class="inline-block px-6 py-3 text-center text-lg font-semibold bg-gray-500 text-white hover:bg-gray-700 rounded-xl">Back</a>
+
             </div>
           </div>
         </div>

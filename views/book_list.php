@@ -27,8 +27,6 @@
   <main class="max-w-7xl mx-auto">
     <div class="py-12 px-6">
       <div class="flex flex-col gap-6">
-
-
         <div id="search-results">
 
           <!-- Search results will be injected here -->
